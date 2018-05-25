@@ -16,16 +16,26 @@ public class Metodo {
     private String nombre;
     private ArrayList<String> cuerpo = new ArrayList();
     private String salida;
+    private String tipo;
 
     public Metodo() {
     }
 
-    public Metodo(String nombre) {
+    public Metodo(String nombre, String tipo) {
         this.nombre = nombre;
+        this.tipo = tipo;
     }
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public void setNombre(String nombre) {
@@ -33,7 +43,7 @@ public class Metodo {
     }
     @Override
     public String toString(){
-        salida = nombre + " (";
+        salida = tipo + " " + nombre + " (";
         for (int i = 0; i < atributos.size(); i++) {
             salida += atributos.get(i)[0]+ " " + atributos.get(i)[1];
             if (i != atributos.size() - 1)

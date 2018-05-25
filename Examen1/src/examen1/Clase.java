@@ -51,6 +51,9 @@ public class Clase {
     @Override
     public String toString() {
         salida = "public class "+nombre + "{\n";
+        for (int i = 0; i < atributos.size(); i++) {
+            salida += "private " + atributos.get(i)[0] + " " +atributos.get(i)[0] + ";\n";
+        }
         for (Metodo m : metodos) {
             salida += m.toString();
             salida += "\n";
