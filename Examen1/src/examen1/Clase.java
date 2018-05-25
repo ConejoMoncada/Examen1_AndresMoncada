@@ -15,6 +15,7 @@ public class Clase {
     private ArrayList<Metodo> metodos = new ArrayList();
     private String nombre;
     private String salida;
+    private ArrayList<String[]> atributos = new ArrayList();
 
     public Clase() {
     }
@@ -37,6 +38,14 @@ public class Clase {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public ArrayList<String[]> getAtributos() {
+        return atributos;
+    }
+
+    public void setAtributos(ArrayList<String[]> atributos) {
+        this.atributos = atributos;
     }
 
     @Override

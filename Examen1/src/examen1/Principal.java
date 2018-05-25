@@ -367,21 +367,56 @@ public class Principal extends javax.swing.JFrame {
         linea = new Scanner(jta_e.getText());
         linea.useDelimiter("\\n");
         while(linea.hasNext()){
-            palabra = new Scanner(linea.next());
-            palabra.useDelimiter(" ");
-            p = palabra.next();
-            if (p.equals("create")){
-                if (palabra.next().equals("class")){
+            try{
+                palabra = new Scanner(linea.next());
+                palabra.useDelimiter(" ");
+                p = palabra.next();
+                if (p.equals("Create")){
+                    palabra.next();
                     usuarios.get(index).getClases().add(new Clase(palabra.next()));
                 }
-            }
-            else if(p.equals("add")){
-                
-            }
-            else if(p.equals("modify")){
-                
-            }
-            else if(p.equals("delete")){
+                else if(p.equals("Add")){
+                    p = palabra.next();
+                    if (p.equals("Atribute")){
+                        palabra.next();
+                        p = palabra.next();
+                        if (p.equals("Method")){
+                            met = palabra.next();
+                            at[0] = palabra.next();
+                            at[1] = palabra.next();
+                            palabra.next();
+                            palabra.next();
+                            c = palabra.next();
+                            for (Clase cl : usuarios.get(index).getClases()) {
+                                if(cl.getNombre().equals(c)){
+                                    for (Metodo m : cl.getMetodos()) {
+                                        if(m.getNombre().equals(met)){
+                                            m.getAtributos().add(at);
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                        }else{
+                            c = palabra.next();
+                            at[0] = palabra.next();
+                            at[1] = palabra.next();
+                            for (Clase cl : usuarios.get(index).getClases()) {
+                                if(cl.getNombre().equals(c)){
+                                    cl.getAtributos().add(at);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if(p.equals("modify")){
+
+                }
+                else if(p.equals("delete")){
+
+                }
+            }catch(Exception e){
                 
             }
         }
@@ -475,4 +510,7 @@ public class Principal extends javax.swing.JFrame {
     private int index = 0;
     private boolean creado = false;
     private String p;
+    private String met;
+    private String c;
+    private String[] at = new String[2];
 }
