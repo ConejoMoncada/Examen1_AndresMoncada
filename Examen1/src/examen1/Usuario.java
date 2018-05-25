@@ -17,6 +17,7 @@ public class Usuario {
     private String usuario;
     private String pass;
     private ArrayList<Clase> clases = new ArrayList();
+    private String salida;
 
     public Usuario() {
     }
@@ -66,6 +67,16 @@ public class Usuario {
 
     public void setClases(ArrayList<Clase> clases) {
         this.clases = clases;
+    }
+
+    @Override
+    public String toString() {
+        salida = "";
+        for (Clase c : clases) {
+            salida += c.toString();
+            salida += "\n";
+        }
+        return salida;
     }
     
 }
