@@ -477,7 +477,7 @@ public class Principal extends javax.swing.JFrame {
                             if(cl.getNombre().equals(c)){
                                 cl.getMetodos().add(new Metodo("toString",("public String")));
                                 for (Metodo m : cl.getMetodos()) {
-                                    if(m.getNombre().equals(c)){
+                                    if(m.getNombre().equals("toString")){
                                         s1 = "return ";
                                         for (int i = 0; i < cl.getAtributos().size(); i++) {
                                             s1 += cl.getAtributos().get(i)[1];
@@ -492,11 +492,83 @@ public class Principal extends javax.swing.JFrame {
                         }
                     }
                 }
-                else if(p.equals("modify")){
-
+                else if(p.equals("Modify")){
+                    p = palabra.next();
+                    if (p.equals("class")){
+                        c = palabra.next();
+                        palabra.next();
+                        c2 = palabra.next();
+                        for (Clase cl : usuarios.get(index).getClases()) {
+                            if (cl.getNombre().equals(c))
+                                cl.setNombre(c2);
+                        }
+                    }else if(p.equals("Method")){
+                        palabra.next();
+                        palabra.next();
+                        met = palabra.next();
+                        palabra.next();
+                        s1 = "";
+                        s1 += palabra.next();
+                        s1 += palabra.next();
+                        met2 = palabra.next();
+                        palabra.next();
+                        palabra.next();
+                        c = palabra.next();
+                        for (Clase cl : usuarios.get(index).getClases()) {
+                            if(cl.getNombre().equals(c)){
+                                for (Metodo m : cl.getMetodos()) {
+                                    if(m.getNombre().equals(met)){
+                                        m.setNombre(met2);
+                                        m.setTipo(s1);
+                                    }
+                                }
+                            }
+                        }
+                    }else if(p.equals("Atribute")){
+                        palabra.next();
+                        p = palabra.next();
+                        if (p.equals("class")){
+                            c = palabra.next();
+                            at[0] = palabra.next();
+                            at[1] = palabra.next();
+                            palabra.next();
+                            at2[0] = palabra.next();
+                            at2[1] = palabra.next();
+                            for (Clase cl : usuarios.get(index).getClases()) {
+                                if(cl.getNombre().equals(c)){
+                                    for (int i = 0; i < cl.getAtributos().size(); i++) {
+                                        if(cl.getAtributos().get(i)[0].equals(at[0]) &&cl.getAtributos().get(i)[1].equals(at[1]))
+                                            cl.getAtributos().set(i,at2);
+                                    }
+                                }
+                            }
+                        }else{
+                            met = palabra.next();
+                            at[0] = palabra.next();
+                            at[1] = palabra.next();
+                            palabra.next();
+                            at2[0] = palabra.next();
+                            at2[1] = palabra.next();
+                            palabra.next();
+                            palabra.next();
+                            c = palabra.next();
+                            for (Clase cl : usuarios.get(index).getClases()) {
+                            if(cl.getNombre().equals(c)){
+                                for (Metodo m : cl.getMetodos()) {
+                                    if(m.getNombre().equals(met)){
+                                        for (int i = 0; i < cl.getAtributos().size(); i++) {
+                                            if(m.getAtributos().get(i)[0].equals(at[0]) && m.getAtributos().get(i)[1].equals(at[1]))
+                                                m.getAtributos().set(i,at2);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        }
+                    }
                 }
                 else if(p.equals("delete")){
-
+                    
                 }
             }catch(Exception e){
                 
@@ -592,8 +664,9 @@ public class Principal extends javax.swing.JFrame {
     private int index = 0;
     private boolean creado = false;
     private String p;
-    private String met;
-    private String c;
+    private String met,met2;
+    private String c,c2;
     private String[] at = new String[2];
-    private String s1;
+    private String[] at2 = new String[2];
+    private String s1, s2;
 }
