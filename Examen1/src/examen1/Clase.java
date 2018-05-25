@@ -41,7 +41,7 @@ public class Clase {
 
     @Override
     public String toString() {
-        salida = nombre + "{\n";
+        salida = "public class "+nombre + "{\n";
         for (Metodo m : metodos) {
             salida += m.toString();
             salida += "\n";

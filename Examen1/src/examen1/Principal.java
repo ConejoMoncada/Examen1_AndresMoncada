@@ -7,12 +7,15 @@ package examen1;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.util.Scanner;
 
 /**
  *
  * @author alexycruz1
  */
 public class Principal extends javax.swing.JFrame {
+    Scanner linea;
+    Scanner palabra;
 
     /**
      * Creates new form Principal
@@ -61,12 +64,6 @@ public class Principal extends javax.swing.JFrame {
         registrarse = new javax.swing.JButton();
         tf_usuario = new javax.swing.JTextField();
         tf_pass = new javax.swing.JPasswordField();
-
-        c_nom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                c_nomActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Nombre");
 
@@ -230,11 +227,6 @@ public class Principal extends javax.swing.JFrame {
                 jButton3MouseClicked(evt);
             }
         });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jd_logeadoLayout = new javax.swing.GroupLayout(jd_logeado.getContentPane());
         jd_logeado.getContentPane().setLayout(jd_logeadoLayout);
@@ -372,11 +364,28 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // ejecutar
+        linea = new Scanner(jta_e.getText());
+        linea.useDelimiter("\\n");
+        while(linea.hasNext()){
+            palabra = new Scanner(linea.next());
+            palabra.useDelimiter(" ");
+            p = palabra.next();
+            if (p.equals("create")){
+                if (palabra.next().equals("class")){
+                    usuarios.get(index).getClases().add(new Clase(palabra.next()));
+                }
+            }
+            else if(p.equals("add")){
+                
+            }
+            else if(p.equals("modify")){
+                
+            }
+            else if(p.equals("delete")){
+                
+            }
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void crear_uActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_uActionPerformed
         boolean v = true;
@@ -395,10 +404,6 @@ public class Principal extends javax.swing.JFrame {
         }else
             JOptionPane.showMessageDialog(this, "Ya existe este usuario");
     }//GEN-LAST:event_crear_uActionPerformed
-
-    private void c_nomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_nomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c_nomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -467,6 +472,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_usuario;
     // End of variables declaration//GEN-END:variables
     private ArrayList<Usuario> usuarios = new ArrayList();
-    int index = 0;
-    boolean creado = false;
+    private int index = 0;
+    private boolean creado = false;
+    private String p;
 }
