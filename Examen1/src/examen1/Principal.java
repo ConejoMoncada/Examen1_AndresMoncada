@@ -567,8 +567,82 @@ public class Principal extends javax.swing.JFrame {
                         }
                     }
                 }
-                else if(p.equals("delete")){
-                    
+                else if(p.equals("Delete")){
+                    p = palabra.next();
+                    if (p.equals("class")){
+                        c = palabra.next();
+                        for (Clase cl : usuarios.get(index).getClases()) {
+                            if(cl.getNombre().equals(c)){
+                                usuarios.get(index).getClases().remove(cl);
+                                break;
+                            }
+                        }
+                    }else if(p.equals("Method")){
+                        met = palabra.next();
+                        palabra.next();
+                        palabra.next();
+                        c = palabra.next();
+                        for (Clase cl : usuarios.get(index).getClases()) {
+                            if(cl.getNombre().equals(c)){
+                                for (Metodo m : cl.getMetodos()) {
+                                    if(m.getNombre().equals(met)){
+                                        cl.getMetodos().remove(m);
+                                    }
+                                }
+                            }
+                        }
+                    }else if(p.equals("constructor")){
+                        palabra.next();
+                        palabra.next();
+                        c = palabra.next();
+                        met = c;
+                        for (Clase cl : usuarios.get(index).getClases()) {
+                            if(cl.getNombre().equals(c)){
+                                for (Metodo m : cl.getMetodos()) {
+                                    if(m.getNombre().equals(met)){
+                                        cl.getMetodos().remove(m);
+                                    }
+                                }
+                            }
+                        }
+                    }else if(p.equals("empty")){
+                        palabra.next();
+                        palabra.next();
+                        palabra.next();
+                        c = palabra.next();
+                        met = c;
+                        for (Clase cl : usuarios.get(index).getClases()) {
+                            if(cl.getNombre().equals(c)){
+                                for (Metodo m : cl.getMetodos()) {
+                                    if(m.getNombre().equals(met) && m.getAtributos().size() == 0){
+                                        cl.getMetodos().remove(m);
+                                    }
+                                }
+                            }
+                        }
+                    }else if(p.equals("toString")){
+                        met = "toString";
+                        palabra.next();
+                        palabra.next();
+                        c = palabra.next();
+                        for (Clase cl : usuarios.get(index).getClases()) {
+                            if(cl.getNombre().equals(c)){
+                                for (Metodo m : cl.getMetodos()) {
+                                    if(m.getNombre().equals(met)){
+                                        cl.getMetodos().remove(m);
+                                    }
+                                }
+                            }
+                        }
+                    }else if(p.equals("Atribute")){
+                        palabra.next();
+                        p = palabra.next();
+                        if (p.equals("Method")){
+                            
+                        }else{
+                            
+                        }
+                    }
                 }
             }catch(Exception e){
                 
